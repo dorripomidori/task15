@@ -1,10 +1,17 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
+chrome_options = Options()
+chrome_options.add_argument("--window-size=1920,800")
+chrome_options.add_argument('--headless')
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),
+                          options=chrome_options)
+driver.maximize_window()
+driver.implicitly_wait(10)
 
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 driver.get("https://www.saucedemo.com/")
 
